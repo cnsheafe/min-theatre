@@ -15,7 +15,12 @@ export default {
     fetchSearchResults(event) {
       event.preventDefault();
       const query = document.getElementById("search-input").value;
-      store.dispatch("fetchSearchResults", query);
+      store.dispatch("fetchSearchResults", query)
+        .then(success => {
+          if (success) {
+            console.log("success");
+          }
+        });
     }
   }
 }
