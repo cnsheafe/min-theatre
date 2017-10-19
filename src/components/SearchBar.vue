@@ -8,22 +8,29 @@
 
 <script>
 import store from "../store";
+import { mapState } from "vuex";
 
 export default {
   name: "SearchBar",
+  computed: mapState(["searchResults"]),
   methods: {
     fetchSearchResults(event) {
       event.preventDefault();
       const query = document.getElementById("search-input").value;
-      store.dispatch("fetchSearchResults", query)
-        .then(success => {
-          if (success) {
-            console.log("success");
-          }
-        });
+      store.dispatch("fetchSearchResults", query).then(success => {
+        if (success) {
+          let videoIds = "";
+          this.searchResults.forEach(result => {
+            videoIds += result.id + ",";
+          });
+          videoIds = videoIds.trim();
+          videoIds = videoIds.slice(0, videoIds.length - 1);
+
+          console.log(videoIds);
+          store.dispatch("fetchResultInfo", videoIds);
+        }
+      });
     }
   }
-}
+};
 </script>
-
-
