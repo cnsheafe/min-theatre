@@ -1,4 +1,6 @@
-const fetch = require("node-fetch");
+require("es6-promise").polyfill();
+const fetch = require("isomorphic-fetch");
+
 /**
  * Vuex function that uses the Fetch API for requesting
  * Youtube seach results. Uses Vuex context to make changes
@@ -9,7 +11,9 @@ const fetch = require("node-fetch");
  */
 export function fetchSearchResults(context, query) {
   const url = `https://min-theatre-api.herokuapp.com/search?q=${query}`;
-  return fetch(url, {method: "GET"})
+  return fetch(url, {
+      method: "GET"
+    })
     .then(res => {
       if (res.status === 200) {
         return res.json();
@@ -17,7 +21,7 @@ export function fetchSearchResults(context, query) {
         throw res;
       }
     }).then(items => {
-      if(items !== null) {
+      if (items !== null) {
         context.commit("updateSearchResults", items);
         return true;
       }
@@ -53,7 +57,46 @@ export function updateSearchResults(state, results) {
         large: {
           url: result.snippet.thumbnails.high.url
         }
-      }
+      },
+      duration: null,
+      views: null,
+      likes: null,
+      dislikes: null
     }
+  });
+}
+
+export function fetchResultInfo(context, videoIds) {
+  const url = `https://min-theatre-api.herokuapp.com/search/extra`;
+  const data = "ids=".concat(videoIds);
+
+  return fetch(url, {
+      method: "POST",
+      body: data,
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(res => {
+      if (res.status === 200) {
+        return res.json();
+      }
+    })
+    .then(items => {
+      context.commit("addExtraInfo", items);
+      return items;
+    });
+}
+
+export function addExtraInfo(state, extraInfo) {
+  state.searchResults = state.searchResults.map((result, index) => {
+    let extra = extraInfo[index];
+
+    return Object.assign({}, result, {
+      duration: extra.contentDetails.duration,
+      views: extra.statistics.viewCount,
+      likes: extra.statistics.likeCount,
+      dislikes: extra.statistics.dislikeCount
+    });
   });
 }
