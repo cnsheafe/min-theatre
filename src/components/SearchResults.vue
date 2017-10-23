@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-show="!currentVideo.show">
   <ul>
     <li v-for="(result, index) in searchResults" :key="index">
       <div class="result-left">
@@ -31,7 +31,7 @@ import { mapState } from "vuex";
 
 export default {
   name: "results",
-  computed: mapState(["searchResults"]),
+  computed: mapState(["searchResults", "currentVideo"]),
   methods: {
     loadVideo(event) {
       const id = event.target.dataset.index;
