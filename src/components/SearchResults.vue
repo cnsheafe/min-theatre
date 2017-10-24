@@ -36,7 +36,7 @@ export default {
     loadVideo(event) {
       const id = event.target.dataset.index;
       const videoId = this.searchResults[event.target.dataset.index].id;
-      store.dispatch("loadVideo", videoId, 500);
+      store.dispatch("loadVideo", videoId);
     }
   }
 }
