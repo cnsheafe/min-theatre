@@ -26,7 +26,6 @@ export default {
           videoIds = videoIds.trim();
           videoIds = videoIds.slice(0, videoIds.length - 1);
 
-          console.log(videoIds);
           store.dispatch("fetchResultInfo", videoIds);
         }
       });
