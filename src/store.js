@@ -9,7 +9,9 @@ import {
 } from "./model/search";
 import {
   loadVideo,
-  showNewVideo
+  showNewVideo,
+  destroyVideo,
+  clearVideo
 } from "./model/video";
 
 Vue.use(Vuex);
@@ -25,12 +27,14 @@ const store = new Vuex.Store({
   mutations: {
     updateSearchResults,
     addExtraInfo,
-    showNewVideo
+    showNewVideo,
+    clearVideo
   },
   actions: {
     fetchSearchResults,
     fetchResultInfo,
-    loadVideo
+    loadVideo,
+    destroyVideo
   }
 });
 
