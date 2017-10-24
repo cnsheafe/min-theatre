@@ -64,6 +64,7 @@ export function updateSearchResults(state, results) {
       dislikes: null
     }
   });
+  state.currentVideo.show = false;
 }
 
 export function fetchResultInfo(context, videoIds) {
