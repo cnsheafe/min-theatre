@@ -48,6 +48,7 @@ describe("Search Mutations", function () {
   beforeEach(function () {
     results = JSON.parse(fs.readFileSync(path.normalize(`${__dirname}/../search-sample.json`), "utf8"));
     state = {};
+    state.currentVideo = {};
   });
 
   describe("updateSearchResults", function () {
