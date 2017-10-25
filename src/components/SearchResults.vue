@@ -5,16 +5,17 @@
       <div class="result-left">
         <div class="result-header">
           <p @click="loadVideo" :data-index="index">{{result.title}}</p>
-          <p>{{result.channelName}}</p>
+          <p>by {{result.channelName}}</p>
         </div>
-        <div class="result-row">
+        <div class="result-description">
           <p>{{result.description}}</p>
         </div>
         <div class="result-stats">
-          <div class="likes">{{result.likes}}</div>
-          <div class="dislikes">{{result.dislikes}}</div>
+          <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{result.likes}}</div>
+          <div class="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{result.dislikes}}</div>
+
           <!-- <div class="views">{{result.views}}</div> -->
-          <div class="duration">{{result.duration}}</div>
+          <div class="duration"><i class="fa fa-clock-o" aria-hidden="true"></i>{{result.duration}}</div>
         </div>
       </div>
       <div role="photo" class="search-result-right">
@@ -58,6 +59,7 @@ li {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 p {
@@ -66,6 +68,8 @@ p {
 }
 
 .result-header {
+  display: flex;
+  flex-direction: column;
   p {
     margin-top: 0;
     margin-bottom: 10px;
@@ -73,6 +77,8 @@ p {
   p:first-child {
     font-size: 20px;
     text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
   }
   p:last-child {
     font-size: 16px;
@@ -81,7 +87,17 @@ p {
 .result-stats {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  margin-top: 10px;
+  div {
+    margin-right: 15px;
+  }
+  i {
+    margin-right: 5px;
+  }
+}
+
+.result-description {
+  width: 70%;
 }
 
 </style>
