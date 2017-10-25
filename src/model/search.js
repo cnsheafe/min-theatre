@@ -94,10 +94,36 @@ export function addExtraInfo(state, extraInfo) {
     let extra = extraInfo[index];
 
     return Object.assign({}, result, {
-      duration: extra.contentDetails.duration,
+      duration: _convertDuration(extra.contentDetails.duration),
       views: extra.statistics.viewCount,
       likes: extra.statistics.likeCount,
       dislikes: extra.statistics.dislikeCount
     });
   });
+}
+
+/**
+ * Helper function for converting timestamp to
+ * readable time format DD:HH:MM:SS .
+ * @private
+ * @param {string} timestamp - Format ISO 8601. Largest units are days.
+ * 
+ */
+function _convertDuration(timestamp) {
+  let days = /([0-9]+)DT/.exec(timestamp);
+  days = days ? days[1]+"d " : "";
+
+  let hours = /([0-9]+)H/.exec(timestamp);
+  hours = hours ? hours[1]+"h " : "";
+
+  let mins = /([0-9]+)M/.exec(timestamp);
+  mins = mins ? mins[1]+"m " : "";
+  const secs = /([0-9]+)S/.exec(timestamp)[1]+"s";
+
+  return "".concat(
+    days,
+    hours,
+    mins,
+    secs
+  );
 }
