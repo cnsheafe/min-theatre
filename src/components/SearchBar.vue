@@ -63,6 +63,9 @@ label {
   width: 80%;
   margin: auto;
   margin-bottom: 5px;
+  input {
+    padding-left: 6px;
+  }
 }
 
 .button-container {
