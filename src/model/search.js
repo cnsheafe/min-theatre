@@ -118,7 +118,8 @@ function _convertDuration(timestamp) {
 
   let mins = /([0-9]+)M/.exec(timestamp);
   mins = mins ? mins[1]+"m " : "";
-  const secs = /([0-9]+)S/.exec(timestamp)[1]+"s";
+  let secs = /([0-9]+)S/.exec(timestamp);
+  secs = secs ? secs[1]+"s" : "";
 
   return "".concat(
     days,
