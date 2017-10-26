@@ -14,6 +14,10 @@ import {
   clearVideo
 } from "./model/video";
 
+import {
+  changeThumbnailSize,
+  updateThumbnailSize
+} from "./model/sizing";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -22,19 +26,22 @@ const store = new Vuex.Store({
     currentVideo: {
       show: false,
       id: null
-    }
+    },
+    thumbnailSize: 0
   },
   mutations: {
     updateSearchResults,
     addExtraInfo,
     showNewVideo,
-    clearVideo
+    clearVideo,
+    updateThumbnailSize
   },
   actions: {
     fetchSearchResults,
     fetchResultInfo,
     loadVideo,
-    destroyVideo
+    destroyVideo,
+    changeThumbnailSize
   }
 });
 
