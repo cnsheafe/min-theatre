@@ -6,9 +6,13 @@
     <img :src="result.thumbnails.small.url" :alt="result.title">
   </div>
   <div class="result-stats">
-    <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{result.likes}}</div>
-    <div class="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{result.dislikes}}</div>
-    <div class="duration"><i class="fa fa-clock-o" aria-hidden="true"></i>{{result.duration}}</div>
+    <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+      <span>{{result.likes}}</span>
+    </div>
+    <div class="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>
+    <span>{{result.dislikes}}</span></div>
+    <div class="duration"><i class="fa fa-clock-o" aria-hidden="true"></i>
+    <span>{{result.duration}}</span></div>
   </div>
 
 </div>
@@ -24,7 +28,7 @@ export default {
   methods: {
     loadVideo(event) {
       const videoId = event.target.dataset["id"];
-      store.dispatch("loadVideo", videoId);
+      store.dispatch("loadVideo", videoId, Math.floor(window.outerWidth * 0.8));
     }
   }
 };
@@ -52,10 +56,11 @@ export default {
   display: flex;
   flex-direction: row;
   div {
+    display: flex;
     margin-right: 15px;
   }
-  i {
-    margin-right: 5px;
+  span {
+    margin-left: 15px;
   }
 }
 
