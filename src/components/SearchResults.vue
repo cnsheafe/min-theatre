@@ -43,13 +43,6 @@ export default {
     ResultCard: ResultCard
   },
   computed: mapState(["searchResults", "currentVideo", "thumbnailSize"]),
-  methods: {
-    loadVideo(event) {
-      // const id = event.target.dataset.index;
-      // const videoId = this.searchResults[event.target.dataset.index].id;
-      // store.dispatch("loadVideo", videoId, Math.floor(window.outerWidth * 0.8));
-    }
-  },
   mounted: function() {
     console.log("hello");
     function mediaMatcher(e) {
