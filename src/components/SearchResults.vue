@@ -45,9 +45,9 @@ export default {
   computed: mapState(["searchResults", "currentVideo", "thumbnailSize"]),
   methods: {
     loadVideo(event) {
-      const id = event.target.dataset.index;
-      const videoId = this.searchResults[event.target.dataset.index].id;
-      store.dispatch("loadVideo", videoId);
+      // const id = event.target.dataset.index;
+      // const videoId = this.searchResults[event.target.dataset.index].id;
+      // store.dispatch("loadVideo", videoId, Math.floor(window.outerWidth * 0.8));
     }
   },
   mounted: function() {
@@ -92,6 +92,8 @@ ul {
 li {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 40%;
   margin-right: 20px;
   margin-bottom: 20px;
   justify-content: center;
