@@ -107,7 +107,9 @@ export function addExtraInfo(state, extraInfo) {
  * readable time format DD:HH:MM:SS .
  * @private
  * @param {string} timestamp - Format ISO 8601. Largest units are days.
- * 
+ * @returns {string} - Readable time format (e.g. 1d 22h 7m 43s)
+ * PT#H#M#S
+ * P#DT#H#M#S
  */
 function _convertDuration(timestamp) {
   let days = /([0-9]+)DT/.exec(timestamp);
