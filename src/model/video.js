@@ -1,10 +1,10 @@
 let player;
 
-export function loadVideo(context, videoId) {
+export function loadVideo(context, videoId, width) {
   player = new YT.Player("player", {
     videoId: videoId,
-    width: `600`,
-    height: `${600 * 9/16}`,
+    width: `${width}`,
+    height: `${width * 9/16}`,
     events: {
       "onReady": event => {
         event.target.playVideo();
