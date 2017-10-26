@@ -27,8 +27,10 @@ export default {
   props: ["result"],
   methods: {
     loadVideo(event) {
-      const videoId = event.target.dataset["id"];
-      store.dispatch("loadVideo", videoId, Math.floor(window.outerWidth * 0.8));
+      store.dispatch("loadVideo", {
+        videoId: event.target.dataset.id, 
+        width: Math.floor(window.outerWidth * 0.8)
+      });
     }
   }
 };
