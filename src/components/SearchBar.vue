@@ -60,7 +60,7 @@ label {
 .search {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   margin: auto;
   margin-bottom: 5px;
   input {
@@ -71,7 +71,7 @@ label {
 .button-container {
   display: flex;
   justify-content: flex-end;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 

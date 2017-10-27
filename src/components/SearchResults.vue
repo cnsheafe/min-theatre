@@ -3,30 +3,6 @@
   <ul>
     <li v-for="(result, index) in searchResults" :key="index">
       <result-card :result="result"></result-card>
-      <!-- <div class="result-left">
-        <div class="result-header">
-          <p @click="loadVideo" :data-index="index">{{result.title}}</p>
-          <p>by {{result.channelName}}</p>
-        </div>
-        <div v-if="thumbnailSize > 0" class="result-description">
-          <p>{{result.description}}</p>
-        </div>
-        <div v-if="thumbnailSize > 0" class="result-stats">
-          <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{result.likes}}</div>
-          <div class="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{result.dislikes}}</div>
-          <div class="duration"><i class="fa fa-clock-o" aria-hidden="true"></i>{{result.duration}}</div>
-        </div>
-      </div>
-      <div role="photo" class="result-right">
-        <img v-if="thumbnailSize < 2" :src="result.thumbnails.small.url" :alt="result.title">
-        <img v-if="thumbnailSize===2" :src="result.thumbnails.large.url" :alt="result.title">
-      </div>
-      <div v-if="thumbnailSize === 0" class="result-stats">
-        <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{result.likes}}</div>
-        <div class="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{result.dislikes}}</div>
-        <div class="duration"><i class="fa fa-clock-o" aria-hidden="true"></i>{{result.duration}}</div>
-      </div> -->
-
     </li>
   </ul>
 </div>
@@ -44,7 +20,6 @@ export default {
   },
   computed: mapState(["searchResults", "currentVideo", "thumbnailSize"]),
   mounted: function() {
-    console.log("hello");
     function mediaMatcher(e) {
       let size;
       if (e.matches) {
@@ -69,50 +44,24 @@ export default {
 
 <style lang="scss" scoped>
 .search-results {
-  width: 80%;
+  width: 90%;
   margin: auto;
   font-family: "Oswald", sans-serif;
 }
 
 ul {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   padding-left: 0;
   list-style: none;
-  justify-content: space-around;
-}
-
-li {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 40%;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  grid-row-gap: 20px;
+  margin: auto;
+  grid-template-columns: 320px;
   justify-content: center;
+
   @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
+    grid-template-columns: 320px 320px;
+    grid-template-rows: 100fr;
+    justify-content: space-around;
   }
 }
-li:last-child {
-}
-
-// p {
-//   margin-top: 0;
-//   margin-bottom: 0;
-// }
-
-// .result-left,
-// .result-right {
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .result-right {
-// }
-
-// .result-description {
-//   width: 70%;
-// }
 </style>
