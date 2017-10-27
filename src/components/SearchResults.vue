@@ -1,25 +1,8 @@
 <template>
-<div v-show="!currentVideo.show">
+<div v-show="!currentVideo.show" class="search-results">
   <ul>
     <li v-for="(result, index) in searchResults" :key="index">
-      <div class="result-left">
-        <div class="result-row">
-          <p @click="loadVideo" :data-index="index">{{result.title}}</p>
-          <p>{{result.channelName}}</p>
-        </div>
-        <div class="result-row">
-          <p>{{result.description}}</p>
-        </div>
-        <div class="result-row">
-          <div class="likes">{{result.likes}}</div>
-          <div class="dislikes">{{result.dislikes}}</div>
-          <div class="views">{{result.views}}</div>
-          <div class="duration">{{result.duration}}</div>
-        </div>
-      </div>
-      <div role="photo" class="search-result-right">
-        <img :src="result.thumbnails.small.url" :alt="result.title">
-      </div>
+      <result-card :result="result"></result-card>
     </li>
   </ul>
 </div>
@@ -28,16 +11,57 @@
 <script>
 import store from "../store";
 import { mapState } from "vuex";
+import ResultCard from "./ResultCard";
 
 export default {
   name: "results",
-  computed: mapState(["searchResults", "currentVideo"]),
-  methods: {
-    loadVideo(event) {
-      const id = event.target.dataset.index;
-      const videoId = this.searchResults[event.target.dataset.index].id;
-      store.dispatch("loadVideo", videoId);
+  components: {
+    ResultCard: ResultCard
+  },
+  computed: mapState(["searchResults", "currentVideo", "thumbnailSize"]),
+  mounted: function() {
+    function mediaMatcher(e) {
+      let size;
+      if (e.matches) {
+        size = "small";
+      } else {
+        if (window.outerWidth < 992) {
+          size = "medium";
+        } else {
+          size = "large";
+        }
+      }
+      console.log(size);
+      store.dispatch("changeThumbnailSize", size);
     }
+    const mql = window.matchMedia("(max-width: 768px)");
+
+    mediaMatcher(mql);
+    mql.onchange = mediaMatcher;
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.search-results {
+  width: 90%;
+  margin: auto;
+  font-family: "Oswald", sans-serif;
+}
+
+ul {
+  display: grid;
+  padding-left: 0;
+  list-style: none;
+  grid-row-gap: 20px;
+  margin: auto;
+  grid-template-columns: 320px;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 320px 320px;
+    grid-template-rows: 100fr;
+    justify-content: space-around;
   }
 }
-</script>
+</style>

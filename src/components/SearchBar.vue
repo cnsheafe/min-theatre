@@ -1,8 +1,17 @@
 <template>
   <form action="" @submit="fetchSearchResults">
-    <label for="search-input">Search Youtube Videos</label>
-    <input type="text" id="search-input" formaction="submit">
-    <button type="submit">Search</button>
+    <div class="search">
+      <label for="search-input">Search Youtube Videos</label>
+      <input 
+        type="text" 
+        id="search-input" 
+        formaction="submit"
+        placeholder="Cat videos, dank memes, Vue tutorials..."
+        @focus="clearSearch">
+    </div>
+    <div class="button-container">
+      <button type="submit">Search</button>
+    </div>
   </form>
 </template>
 
@@ -29,7 +38,41 @@ export default {
           store.dispatch("fetchResultInfo", videoIds);
         }
       });
+      document.getElementById("search-input").blur();
+    },
+    clearSearch(event) {
+      event.target.value = "";
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+* {
+  font-family: "Oswald", sans-serif;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 5px;
+  input {
+    padding-left: 6px;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+  margin: auto;
+}
+
+</style>

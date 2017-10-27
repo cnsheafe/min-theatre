@@ -23,5 +23,11 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
+iframe {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 40px;
+}
 </style>
