@@ -3,7 +3,7 @@
   <div class="result-header">
     <p @click="loadVideo" :data-id="result.id">{{result.title}}</p>
     <p>by {{result.channelName}}</p>
-    <img :src="result.thumbnails.small.url" :alt="result.title">
+    <img :src="result.thumbnails.medium.url" :alt="result.title">
   </div>
   <div class="result-stats">
     <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
@@ -29,7 +29,7 @@ export default {
     loadVideo(event) {
       store.dispatch("loadVideo", {
         videoId: event.target.dataset.id, 
-        width: Math.floor(window.outerWidth * 0.8)
+        width: Math.floor(window.innerWidth * 0.9)
       });
     }
   }
@@ -54,18 +54,14 @@ export default {
     font-size: 16px;
     line-height: normal;
   }
+}
 .result-stats {
-  display: flex;
-  flex-direction: row;
-  div {
-    display: flex;
-    margin-right: 15px;
-  }
-  span {
-    margin-left: 15px;
+  display: grid;
+  grid-template-columns: 33fr 33fr 33fr;
+  justify-items: center;
+
+  i {
+    margin-right: 5px;
   }
 }
-
-}
-
 </style>
