@@ -28,6 +28,7 @@ header {
   text-align: center;
   font-family: "Crete Round", serif;
   font-size: 30px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 </style>
