@@ -25,11 +25,8 @@ Fetch was used as an alternative to AJAX for performing simple and modern HTTP r
 ## Development Tools
 
 - Webpack
-
 - Vue Devtools
-
 - Postman
-
 - TravisCI
 
 ## Build Setup
