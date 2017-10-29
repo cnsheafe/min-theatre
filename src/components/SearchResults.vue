@@ -31,7 +31,6 @@ export default {
           size = "large";
         }
       }
-      console.log(size);
       store.dispatch("changeThumbnailSize", size);
     }
     const mql = window.matchMedia("(max-width: 768px)");
