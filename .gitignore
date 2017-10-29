@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 test/e2e/reports
 selenium-debug.log
+.sass-cache
+*.map
 
 # Editor directories and files
 .idea
