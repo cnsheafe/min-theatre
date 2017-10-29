@@ -3,7 +3,10 @@
   <div class="result-header">
     <p @click="loadVideo" :data-id="result.id">{{result.title}}</p>
     <p>by {{result.channelName}}</p>
-    <img :src="result.thumbnails.medium.url" :alt="result.title">
+    <img :src="result.thumbnails.medium.url" :alt="result.title"
+      @click="loadVideo" 
+      :data-id="result.id"
+    >
   </div>
   <div class="result-stats">
     <div class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
@@ -47,16 +50,23 @@ export default {
     display: inline-block;
     margin-right: 10px;
   }
+  p:first-child:hover {
+    color: #F2FCAE;
+  }
   p:last-child {
     font-size: 16px;
     line-height: normal;
   }
 }
+
+img {
+  cursor: pointer;
+}
+
 .result-stats {
   display: grid;
   grid-template-columns: 33fr 33fr 33fr;
   justify-items: center;
-
   i {
     margin-right: 5px;
   }
