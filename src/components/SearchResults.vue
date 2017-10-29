@@ -45,7 +45,8 @@ export default {
 .search-results {
   width: 90%;
   margin: auto;
-  font-family: "Oswald", sans-serif;
+  font-family: "Catamaran", sans-serif;
+  margin-bottom: 100px;
 }
 
 ul {
