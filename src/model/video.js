@@ -5,15 +5,13 @@ let player;
  * @param {*} context - Vuex context for calling mutations
  * @param {*} payload - Consists of two properties: videoId and width
  */
-export function loadVideo(context, payload) {
+export function loadVideo(context, videoId) {
   player = new YT.Player("player", {
-    videoId: payload.videoId,
-    width: `${payload.width}`,
-    height: `${payload.width * 9/16}`,
+    videoId: videoId,
     events: {
       "onReady": event => {
         event.target.playVideo();
-        context.commit("showNewVideo", payload.videoId);
+        context.commit("showNewVideo", videoId);
       },
       "onStateChange": event => {}
     }

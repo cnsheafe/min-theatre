@@ -27,10 +27,7 @@ export default {
   props: ["result"],
   methods: {
     loadVideo(event) {
-      store.dispatch("loadVideo", {
-        videoId: event.target.dataset.id, 
-        width: Math.floor(window.innerWidth * 0.9)
-      });
+      store.dispatch("loadVideo", event.target.dataset.id);
     }
   }
 };

@@ -31,5 +31,12 @@ header {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+html, body, main, section {
+  height: 100%;
+},
+iframe {
+  width: 90%;
+  height: 65%;
+}
 </style>
 
