@@ -7,7 +7,7 @@
         id="search-input" 
         formaction="submit"
         placeholder="Cat videos, dank memes, Vue tutorials..."
-        @focus="clearSearch">
+        >
     </div>
     <div class="button-container">
       <button type="submit">Search</button>
@@ -39,9 +39,6 @@ export default {
         }
       });
       document.getElementById("search-input").blur();
-    },
-    clearSearch(event) {
-      event.target.value = "";
     }
   }
 };
@@ -50,11 +47,7 @@ export default {
 <style lang="scss" scoped>
 
 * {
-  font-family: "Oswald", sans-serif;
-}
-
-label {
-  margin-bottom: 5px;
+  font-family: "Catamaran", sans-serif;
 }
 
 .search {
@@ -63,9 +56,18 @@ label {
   width: 90%;
   margin: auto;
   margin-bottom: 5px;
-  input {
-    padding-left: 6px;
-  }
+}
+
+label {
+  padding-left: 1px;
+  margin-bottom: 5px;
+}
+
+input {
+  padding-left: 6px;
+  border: 1px solid black;
+  border-radius: 2px;
+  font-size: 22px;
 }
 
 .button-container {
@@ -73,6 +75,18 @@ label {
   justify-content: flex-end;
   width: 90%;
   margin: auto;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #FCFFEB;
+  font-size: 18px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #F2FCAE;
 }
 
 </style>
