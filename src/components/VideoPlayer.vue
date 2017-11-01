@@ -29,5 +29,8 @@ iframe {
   justify-content: center;
   margin: auto;
   margin-top: 40px;
+  margin-bottom: 100px;
+  width: 90%;
+  height: 80%;
 }
 </style>
