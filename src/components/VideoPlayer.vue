@@ -15,6 +15,9 @@ export default {
         if (!this.currentVideo.show && this.currentVideo.id !== null) {
           store.dispatch("destroyVideo");
         }
+        else if (this.currentVideo.show && this.currentVideo.id) {
+          document.getElementsByTagName("iframe")[0].scrollIntoView(true);
+        }
       },
       deep: true
     }
