@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
-    "e2e": "node test/e2e/runner.js",
+    "sass": "sass --watch static/style.scss:static/style.css",
     "test": "jest"
   },
   "dependencies": {
