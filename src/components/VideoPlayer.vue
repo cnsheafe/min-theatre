@@ -15,6 +15,9 @@ export default {
         if (!this.currentVideo.show && this.currentVideo.id !== null) {
           store.dispatch("destroyVideo");
         }
+        else if (this.currentVideo.show && this.currentVideo.id) {
+          document.getElementsByTagName("iframe")[0].scrollIntoView(true);
+        }
       },
       deep: true
     }
@@ -29,5 +32,8 @@ iframe {
   justify-content: center;
   margin: auto;
   margin-top: 40px;
+  margin-bottom: 100px;
+  width: 90%;
+  height: 80%;
 }
 </style>
