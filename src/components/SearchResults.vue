@@ -1,5 +1,6 @@
 <template>
-<div v-show="!currentVideo.show" class="search-results">
+<!-- <div v-show="!currentVideo.show" class="search-results"> -->
+<div class="search-results">
   <ul>
     <li v-for="(result, index) in searchResults" :key="index">
       <result-card :result="result"></result-card>
@@ -18,7 +19,7 @@ export default {
   components: {
     ResultCard: ResultCard
   },
-  computed: mapState(["searchResults", "currentVideo", "thumbnailSize"]),
+  computed: mapState(["searchResults"]),
   mounted: function() {
     function mediaMatcher(e) {
       let size;
