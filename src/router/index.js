@@ -18,7 +18,7 @@ export default new Router({
         },
         {
           path: "video",
-          component: null
+          component: VideoPlayer
         }
       ]
     },
