@@ -1,5 +1,5 @@
 <template>
-  <form action="" @submit="fetchSearchResults">
+  <form action="" @submit="goToResults">
     <div class="search">
       <label for="search-input">Search Youtube Videos</label>
       <input 
@@ -16,32 +16,13 @@
 </template>
 
 <script>
-import store from "../store";
-import { mapState } from "vuex";
-
 export default {
   name: "SearchBar",
-  computed: mapState(["searchResults"]),
   methods: {
-    fetchSearchResults(event) {
+    goToResults(event) {
       event.preventDefault();
       const query = document.getElementById("search-input").value;
-      store.dispatch("fetchSearchResults", query)
-      .then(success => {
-        if (success) {
-          let videoIds = "";
-          this.searchResults.forEach(result => {
-            videoIds += result.id + ",";
-          });
-          videoIds = videoIds.trim();
-          videoIds = videoIds.slice(0, videoIds.length - 1);
-
-          store.dispatch("fetchResultInfo", videoIds);
-        }
-      })
-      .then(() => {
-        this.$router.push("results");
-      });
+      this.$router.push({ path: "results", query: { q: query } });
       document.getElementById("search-input").blur();
     }
   }
@@ -49,7 +30,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 * {
   font-family: "Catamaran", sans-serif;
 }
@@ -85,12 +65,11 @@ button {
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
-  background-color: #FCFFEB;
+  background-color: #fcffeb;
   font-size: 18px;
   cursor: pointer;
 }
 button:hover {
-  background-color: #F2FCAE;
+  background-color: #f2fcae;
 }
-
 </style>
