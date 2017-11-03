@@ -1,8 +1,8 @@
 <template>
-<div v-show="!currentVideo.show" class="search-results">
+<div class="search-results">
   <ul>
     <li v-for="(result, index) in searchResults" :key="index">
-      <result-card :result="result"></result-card>
+      <result-card :result="result"/>
     </li>
   </ul>
 </div>
@@ -18,25 +18,30 @@ export default {
   components: {
     ResultCard: ResultCard
   },
-  computed: mapState(["searchResults", "currentVideo", "thumbnailSize"]),
-  mounted: function() {
-    function mediaMatcher(e) {
-      let size;
-      if (e.matches) {
-        size = "small";
-      } else {
-        if (window.outerWidth < 992) {
-          size = "medium";
-        } else {
-          size = "large";
-        }
-      }
-      store.dispatch("changeThumbnailSize", size);
+  computed: mapState(["searchResults"]),
+  created() {
+    this.fetchResults(this.$route.query.q);
+  },
+  watch: {
+    $route: function(route) {
+      this.fetchResults(route.query.q);
     }
-    const mql = window.matchMedia("(max-width: 768px)");
+  },
+  methods: {
+    fetchResults(query) {
+      store.dispatch("fetchSearchResults", query).then(success => {
+        if (success) {
+          let videoIds = "";
+          this.searchResults.forEach(result => {
+            videoIds += result.id + ",";
+          });
+          videoIds = videoIds.trim();
+          videoIds = videoIds.slice(0, videoIds.length - 1);
 
-    mediaMatcher(mql);
-    mql.onchange = mediaMatcher;
+          store.dispatch("fetchResultInfo", videoIds);
+        }
+      });
+    }
   }
 };
 </script>

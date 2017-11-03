@@ -6,16 +6,23 @@ let player;
  * @param {*} payload - Consists of two properties: videoId and width
  */
 export function loadVideo(context, videoId) {
-  player = new YT.Player("player", {
-    videoId: videoId,
-    events: {
-      "onReady": event => {
-        event.target.playVideo();
-        context.commit("showNewVideo", videoId);
-      },
-      "onStateChange": event => {}
-    }
-  });
+  try {
+    player.destroy()
+  } catch (e) {
+    // Player is unitialized. GOTO finally.
+  } finally {
+    player = new YT.Player("player", {
+      videoId: videoId,
+      events: {
+        "onReady": event => {
+          event.target.playVideo();
+          context.commit("showNewVideo", videoId);
+        },
+        "onStateChange": event => {}
+      }
+    });
+    return player;
+  }
 }
 
 export function destroyVideo(context) {

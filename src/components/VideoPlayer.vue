@@ -9,18 +9,27 @@ import { mapState } from "vuex";
 export default {
   name: "VideoPlayer",
   computed: mapState(["currentVideo"]),
+  mounted() {
+    setTimeout(() => {
+      store.dispatch("loadVideo", this.$route.query.id);
+    }, 500);
+  },
   watch: {
+    $route: function(route) {
+      if (route.query.id !== this.currentVideo.id) {
+        store.dispatch("loadVideo", route.query.id);
+      }
+    },
     currentVideo: {
       handler: function() {
-        if (!this.currentVideo.show && this.currentVideo.id !== null) {
-          store.dispatch("destroyVideo");
-        }
-        else if (this.currentVideo.show && this.currentVideo.id) {
-          document.getElementsByTagName("iframe")[0].scrollIntoView(true);
-        }
-      },
-      deep: true
-    }
+        document.getElementsByTagName("iframe")[0].scrollIntoView(true);
+      }
+    },
+    deep: true
+  },
+  beforeRouteLeave(to, from, next) {
+    store.dispatch("destroyVideo");
+    next();
   }
 };
 </script>

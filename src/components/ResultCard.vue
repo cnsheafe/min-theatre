@@ -1,10 +1,10 @@
 <template>
 <div>
   <div class="result-header">
-    <p @click="loadVideo" :data-id="result.id">{{result.title}}</p>
+    <p @click="goToVideo" :data-id="result.id">{{result.title}}</p>
     <p>by {{result.channelName}}</p>
     <img :src="result.thumbnails.medium.url" :alt="result.title"
-      @click="loadVideo" 
+      @click="goToVideo" 
       :data-id="result.id"
     >
   </div>
@@ -29,8 +29,11 @@ export default {
   name: "resultCard",
   props: ["result"],
   methods: {
-    loadVideo(event) {
-      store.dispatch("loadVideo", event.target.dataset.id);
+    goToVideo(event) {
+      this.$router.push({
+        path: "video",
+        query: { id: event.target.dataset.id }
+      });
     }
   }
 };
@@ -51,7 +54,7 @@ export default {
     margin-right: 10px;
   }
   p:first-child:hover {
-    color: #F2FCAE;
+    color: #f2fcae;
   }
   p:last-child {
     font-size: 16px;
