@@ -26,7 +26,8 @@ export default {
     fetchSearchResults(event) {
       event.preventDefault();
       const query = document.getElementById("search-input").value;
-      store.dispatch("fetchSearchResults", query).then(success => {
+      store.dispatch("fetchSearchResults", query)
+      .then(success => {
         if (success) {
           let videoIds = "";
           this.searchResults.forEach(result => {
@@ -37,6 +38,9 @@ export default {
 
           store.dispatch("fetchResultInfo", videoIds);
         }
+      })
+      .then(() => {
+        this.$router.push("results");
       });
       document.getElementById("search-input").blur();
     }
