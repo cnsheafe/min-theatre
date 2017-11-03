@@ -31,6 +31,7 @@ export default {
   methods: {
     loadVideo(event) {
       store.dispatch("loadVideo", event.target.dataset.id);
+      this.$router.push("video");
     }
   }
 };
