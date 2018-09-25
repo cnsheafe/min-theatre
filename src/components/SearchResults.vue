@@ -58,13 +58,14 @@ ul {
   display: grid;
   padding-left: 0;
   list-style: none;
-  grid-row-gap: 20px;
+  row-gap: 80px;
   margin: auto;
   grid-template-columns: 320px;
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    grid-template-columns: 320px 320px;
+    grid-template-columns: repeat(auto-fit, 320px);
+    column-gap: 80px;
     grid-template-rows: 100fr;
     justify-content: space-around;
   }
