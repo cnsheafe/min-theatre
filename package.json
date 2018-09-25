@@ -1,6 +1,6 @@
 {
   "name": "min-theatre",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webapp for viewing Youtube videos in a clutterless environment",
   "author": "cnsheafe <cnsheafe@gmail.com>",
   "private": true,
